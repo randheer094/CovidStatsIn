@@ -1,0 +1,21 @@
+CREATE TABLE CovidDistrictStats (
+    stateCode TEXT NOT NULL,
+    name TEXT NOT NULL,
+    confirmed INTEGER,
+    deceased INTEGER,
+    recovered INTEGER,
+    tested INTEGER,
+    vaccinated1 INTEGER,
+    vaccinated2 INTEGER,
+    population INTEGER
+);
+
+insertNew:
+INSERT INTO CovidDistrictStats (stateCode, name, confirmed, deceased, recovered, tested, vaccinated1, vaccinated2, population)
+VALUES ?;
+
+getByStateCode:
+SELECT * FROM CovidDistrictStats WHERE stateCode=?;
+
+deleteAll:
+DELETE FROM CovidDistrictStats;

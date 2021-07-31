@@ -1,0 +1,21 @@
+CREATE TABLE CovidStateStats (
+  code TEXT NOT NULL,
+  name TEXT NOT NULL,
+  confirmed INTEGER,
+  deceased INTEGER,
+  recovered INTEGER,
+  tested INTEGER,
+  vaccinated1 INTEGER,
+  vaccinated2 INTEGER,
+  population INTEGER,
+  vaccinationUpdatedAt TEXT NOT NULL,
+  testedUpdatedAt TEXT NOT NULL,
+  updatedAt TEXT NOT NULL
+);
+
+insertNew:
+INSERT INTO CovidStateStats (code, name, confirmed, deceased, recovered, tested, vaccinated1, vaccinated2, population, vaccinationUpdatedAt, testedUpdatedAt, updatedAt)
+VALUES ?;
+
+deleteAll:
+DELETE FROM CovidStateStats;
