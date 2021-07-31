@@ -59,7 +59,6 @@ kotlin {
                 api("io.ktor:ktor-client-android:$ktorVersion")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
                 api("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
-                api("dev.icerock.moko:mvvm-databinding:$mvvmVersion")
             }
         }
         val iosMain by getting {
@@ -101,9 +100,6 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 30
-    }
-    buildFeatures {
-        dataBinding = true
     }
 }
 
