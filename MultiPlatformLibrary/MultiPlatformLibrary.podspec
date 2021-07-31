@@ -7,6 +7,7 @@ Pod::Spec.new do |spec|
     spec.license                  = ''
     spec.summary                  = 'CovidStatsIN'
 
+    spec.static_framework         = true
     spec.vendored_frameworks      = "build/cocoapods/framework/MultiPlatformLibrary.framework"
     spec.libraries                = "c++"
     spec.module_name              = "#{spec.name}_umbrella"

@@ -32,22 +32,22 @@ kotlin {
 
     val ktorVersion = "1.6.2"
     val serializationVersion = "1.2.2"
-    val coroutineVersion = "1.5.1"
+    val coroutineVersion = "1.3.0"
     val sqlDelightVersion = "1.5.0"
     val mvvmVersion = "0.11.0"
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1-native-mt") {
+                api("io.ktor:ktor-client-core:$ktorVersion")
+                api("io.ktor:ktor-client-serialization:$ktorVersion")
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1-native-mt") {
                     version {
-                        strictly("1.5.0-native-mt")
+                        strictly("1.5.1-native-mt")
                     }
                 }
-                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                api("com.squareup.sqldelight:runtime:$sqlDelightVersion")
                 api("dev.icerock.moko:mvvm-core:$mvvmVersion")
                 api("dev.icerock.moko:mvvm-livedata:$mvvmVersion")
                 api("dev.icerock.moko:mvvm-state:$mvvmVersion")
@@ -56,9 +56,10 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-android:$ktorVersion")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
-                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
+                api("io.ktor:ktor-client-android:$ktorVersion")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
+                api("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
+                api("dev.icerock.moko:mvvm-databinding:$mvvmVersion")
             }
         }
         val iosMain by getting {
@@ -100,6 +101,9 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 30
+    }
+    buildFeatures {
+        dataBinding = true
     }
 }
 
