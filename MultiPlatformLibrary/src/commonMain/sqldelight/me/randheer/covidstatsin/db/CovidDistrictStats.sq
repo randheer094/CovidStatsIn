@@ -17,5 +17,8 @@ VALUES ?;
 getByStateCode:
 SELECT * FROM CovidDistrictStats WHERE stateCode=?;
 
+searchDistrict:
+SELECT * FROM CovidDistrictStats WHERE stateCode=? AND name LIKE ?;
+
 deleteAll:
 DELETE FROM CovidDistrictStats;

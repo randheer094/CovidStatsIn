@@ -10,9 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:foregroundTint="@android:color/white"
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="?attr/homeAsUpIndicator" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/searchBox"

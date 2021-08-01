@@ -26,7 +26,7 @@ class ViewModel: ObservableObject {
     
     func fetchAPI() {
         self.isLoading = true
-        repository.getCovidData { (items: [CovidStateStats]?, e: Error?) in
+        repository.getStates { (items: [CovidStateStats]?, e: Error?) in
             if e == nil {
                 let data = items ?? []
                 self.initialResponse = data.map {

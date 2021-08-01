@@ -12,7 +12,19 @@ class CovidLocalDataSource {
         entityData.second.forEach { Db.getDb().covidDistrictStatsQueries.insertNew(it) }
     }
 
-    fun getCovidStateData(stateCode: String): List<CovidDistrictStats> {
+    fun searchStates(query: String): List<CovidStateStats> {
+        val searchQuery = "%$query%"
+        return Db.getDb().covidStateStatsQueries.getBySearchTerm(searchQuery, searchQuery)
+            .executeAsList()
+    }
+
+    fun getDistricts(stateCode: String): List<CovidDistrictStats> {
         return Db.getDb().covidDistrictStatsQueries.getByStateCode(stateCode).executeAsList()
+    }
+
+    fun searchDistricts(stateCode: String, query: String): List<CovidDistrictStats> {
+        val searchQuery = "%$query%"
+        return Db.getDb().covidDistrictStatsQueries.searchDistrict(stateCode, searchQuery)
+            .executeAsList()
     }
 }

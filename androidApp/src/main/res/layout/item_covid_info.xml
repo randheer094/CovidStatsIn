@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="2dp"
+    android:elevation="@dimen/cardview_default_elevation"
+    app:cardCornerRadius="4dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="8dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/nameTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Total Inida" />
+
+        <Space
+            android:id="@+id/space1"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nameTV" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:drawable/divider_horizontal_textfield"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/space1" />
+
+        <Space
+            android:id="@+id/space2"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/confirmedTitleTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toStartOf="@id/deceasedTitleTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/space2"
+            tools:text="Confirmed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/deceasedTitleTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/confirmedTitleTv"
+            app:layout_constraintTop_toTopOf="@id/confirmedTitleTv"
+            tools:text="Deceased" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/confirmedTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/holo_red_light"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/deceasedTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/confirmedTitleTv"
+            tools:text="Confirmed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/deceasedTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/holo_red_dark"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/confirmedTv"
+            app:layout_constraintTop_toTopOf="@id/confirmedTv"
+            tools:text="Deceased" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/recoveredTitleTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toStartOf="@id/testedTitleTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/confirmedTv"
+            tools:text="Recovered" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/testedTitleTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/recoveredTitleTv"
+            app:layout_constraintTop_toTopOf="@id/recoveredTitleTv"
+            tools:text="Tested" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/recoveredTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/holo_green_light"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/testedTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/testedTitleTv"
+            tools:text="Recovered" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/testedTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/recoveredTv"
+            app:layout_constraintTop_toTopOf="@id/recoveredTv"
+            tools:text="Tested" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/vaccinated1TitleTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toStartOf="@id/vaccinated2TitleTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recoveredTv"
+            tools:text="Recovered" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/vaccinated2TitleTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vaccinated1TitleTv"
+            app:layout_constraintTop_toTopOf="@id/vaccinated1TitleTv"
+            tools:text="Tested" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/vaccinated1Tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/holo_green_light"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/vaccinated2Tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vaccinated1TitleTv"
+            tools:text="Recovered" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/vaccinated2Tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/holo_green_dark"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vaccinated1Tv"
+            app:layout_constraintTop_toTopOf="@id/vaccinated1Tv"
+            tools:text="Tested" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/updatedAtTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#80000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vaccinated1Tv"
+            tools:text="Updated At: 21 Dec 2011" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
