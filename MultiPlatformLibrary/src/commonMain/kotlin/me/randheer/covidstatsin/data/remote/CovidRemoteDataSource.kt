@@ -6,6 +6,7 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import kotlinx.serialization.json.Json
 import me.randheer.covidstatsin.data.model.CovidApiData
+import kotlin.native.concurrent.ThreadLocal
 
 class CovidRemoteDataSource {
 

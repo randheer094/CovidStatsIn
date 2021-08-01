@@ -7,15 +7,6 @@ import me.randheer.covidstatsin.db.CovidDistrictStats
 import me.randheer.covidstatsin.db.CovidStateStats
 import me.randheer.covidstatsin.domain.repo.CovidRepository
 
-
-fun getCovidRepository(): CovidRepositoryImpl {
-    return CovidRepositoryImpl(
-        CovidRemoteDataSource(),
-        CovidLocalDataSource(),
-        ApiEntityMapper()
-    )
-}
-
 class CovidRepositoryImpl(
     private val remoteDataSource: CovidRemoteDataSource,
     private val localDataSource: CovidLocalDataSource,

@@ -12,5 +12,4 @@ install! 'cocoapods', :disable_input_output_paths => true
 
 target 'iosApp' do
   pod 'MultiPlatformLibrary', :path => '../MultiPlatformLibrary'
-  pod 'MultiPlatformLibraryMvvm', :git => 'https://github.com/icerockdev/moko-mvvm.git', :tag => 'release/0.11.0'
 end

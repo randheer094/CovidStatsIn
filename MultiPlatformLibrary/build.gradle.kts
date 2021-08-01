@@ -31,10 +31,9 @@ kotlin {
     }
 
     val ktorVersion = "1.6.2"
-    val serializationVersion = "1.2.2"
+    val serializationVersion = "1.2.1"
     val coroutineVersion = "1.3.0"
     val sqlDelightVersion = "1.5.0"
-    val mvvmVersion = "0.11.0"
 
     sourceSets {
         val commonMain by getting {
@@ -48,10 +47,6 @@ kotlin {
                     }
                 }
                 api("com.squareup.sqldelight:runtime:$sqlDelightVersion")
-                api("dev.icerock.moko:mvvm-core:$mvvmVersion")
-                api("dev.icerock.moko:mvvm-livedata:$mvvmVersion")
-                api("dev.icerock.moko:mvvm-state:$mvvmVersion")
-                api("dev.icerock.moko:resources:0.16.2")
             }
         }
         val androidMain by getting {
@@ -84,10 +79,6 @@ kotlin {
 
     targets.withType(KotlinNativeTarget::class.java).all {
         binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
-            export("dev.icerock.moko:mvvm-core:$mvvmVersion")
-            export("dev.icerock.moko:mvvm-livedata:$mvvmVersion")
-            export("dev.icerock.moko:mvvm-state:$mvvmVersion")
-            export("dev.icerock.moko:resources:0.16.2")
             isStatic = false
         }
     }
