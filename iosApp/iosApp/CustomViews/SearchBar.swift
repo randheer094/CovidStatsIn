@@ -1,43 +1,44 @@
 //
 //  SearchBar.swift
-//  DeliveryHeroFTW
 //
 //  Created by Randheer Singh on 31/7/21.
 //
 
 import SwiftUI
 
-struct SearchBar: UIViewRepresentable {
-
+struct SearchBar: View {
     @Binding var text: String
-
-    class Coordinator: NSObject, UISearchBarDelegate {
-        @Binding var text: String
-
-        init(text: Binding<String>) {
-            _text = text
+ 
+    @State private var isEditing = false
+    var onSearch: () -> Void
+ 
+    var body: some View {
+        HStack { 
+            TextField("Search by state name or code", text: $text, onEditingChanged: { active in
+            }, onCommit: {
+                self.onSearch()
+            })
+                .padding(8)
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
+                .padding(.horizontal, 16)
+                .onTapGesture {
+                    self.isEditing = true
+                }
+ 
+            if isEditing {
+                Button(action: {
+                    self.isEditing = false
+                    self.text = ""
+                    self.onSearch()
+                }) {
+                    Text("Cancel")
+                }
+                .hideKeyboardWhenTappedAround()
+                .padding(.trailing, 10)
+                .transition(.move(edge: .trailing))
+                .animation(.default)
+            }
         }
-
-        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            text = searchText
-        }
-    }
-
-    func makeCoordinator() -> SearchBar.Coordinator {
-        return Coordinator(text: $text)
-    }
-
-    func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
-        let searchBar = UISearchBar(frame: .zero)
-        searchBar.delegate = context.coordinator
-        searchBar.placeholder = "Search"
-        searchBar.searchBarStyle = .minimal
-        searchBar.autocapitalizationType = .none
-        searchBar.returnKeyType = .done
-        return searchBar
-    }
-
-    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
-        uiView.text = text
     }
 }

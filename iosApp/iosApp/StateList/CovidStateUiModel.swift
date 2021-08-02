@@ -1,11 +1,11 @@
 //
 //  DataModel.swift
-//  DeliveryHeroFTW
 //
 //  Created by Randheer Singh on 31/7/21.
 //
 
 import Foundation
+import MultiPlatformLibrary
 
 struct CovidStateUiModel: Codable, Identifiable {
     
@@ -15,9 +15,11 @@ struct CovidStateUiModel: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case code = "code"
     }
+}
 
-    func matches(text: String) -> Bool {
-        return self.code.lowercased().contains(text.lowercased())
+extension CovidStateUiModel {
+    static func fromCovidStateStats(input: CovidStateStats) -> CovidStateUiModel {
+        return CovidStateUiModel(code: input.code)
     }
 }
 

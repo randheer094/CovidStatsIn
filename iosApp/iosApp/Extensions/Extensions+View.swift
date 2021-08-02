@@ -1,6 +1,5 @@
 //
 //  Extensions+View.swift
-//  DeliveryHeroFTW
 //
 //  Created by Randheer Singh on 31/7/21.
 //
