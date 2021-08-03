@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  StateListScreen.swift
 //
 //  Created by Randheer Singh on 1/8/21.
 //
@@ -24,7 +24,7 @@ struct StateListScreen: View {
                         SearchBar(text: self.$query, onSearch: {
                             viewModel.onSearch(query: query)
                         })
-                        StateItemView(items: viewModel.items)
+                        StateListView(items: viewModel.items)
                     }
                 } else {
                     ProgressView()

@@ -155,7 +155,7 @@
             app:layout_constraintEnd_toStartOf="@id/vaccinated2TitleTv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recoveredTv"
-            tools:text="Recovered" />
+            tools:text="Partially Vaccinated" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vaccinated2TitleTv"
@@ -166,7 +166,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/vaccinated1TitleTv"
             app:layout_constraintTop_toTopOf="@id/vaccinated1TitleTv"
-            tools:text="Tested" />
+            tools:text="Fully Vaccinated" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vaccinated1Tv"
@@ -178,7 +178,7 @@
             app:layout_constraintEnd_toStartOf="@id/vaccinated2Tv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vaccinated1TitleTv"
-            tools:text="Recovered" />
+            tools:text="Partially Vaccinated" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/vaccinated2Tv"
@@ -190,7 +190,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/vaccinated1Tv"
             app:layout_constraintTop_toTopOf="@id/vaccinated1Tv"
-            tools:text="Tested" />
+            tools:text="Fully Vaccinated" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/updatedAtTv"
@@ -202,7 +202,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vaccinated1Tv"
-            tools:text="Updated At: 21 Dec 2011" />
+            tools:text="Last Updated At: 21 Dec 2011" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

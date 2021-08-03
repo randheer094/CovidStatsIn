@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  StateViewModel.swift
 //
 //  Created by Randheer Singh on 31/7/21.
 //
