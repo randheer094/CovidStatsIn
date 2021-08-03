@@ -1,5 +1,5 @@
 //
-//  StateListView.swift
+//  DistrictListView.swift
 //  iosApp
 //
 //  Created by Randheer Singh on 3/8/21.
@@ -8,15 +8,15 @@
 
 import SwiftUI
 
-struct StateListView: View {
+struct DistrictListView: View {
     
-    var items: [CovidStateUiModel] = []
+    var items: [CovidDistrictUiModel] = []
         
     var body: some View {
         ScrollView {
             LazyVStack {
                 ForEach(items) { item in
-                    StateItemView(item: item)
+                    DistrictItemView(item: item)
                         .padding(.top, 8)
                         .padding(.leading, 12)
                         .padding(.trailing, 12)

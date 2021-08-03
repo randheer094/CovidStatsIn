@@ -10,6 +10,9 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		4686426526B97C6D005C5BDA /* StateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686426426B97C6D005C5BDA /* StateItemView.swift */; };
 		4686426826B98A65005C5BDA /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686426726B98A65005C5BDA /* InfoView.swift */; };
+		4686426B26B993FE005C5BDA /* DistrictListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686426A26B993FE005C5BDA /* DistrictListScreen.swift */; };
+		4686426E26B994A2005C5BDA /* DistrictListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686426D26B994A2005C5BDA /* DistrictListView.swift */; };
+		4686427126B994E9005C5BDA /* DistrictItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686427026B994E9005C5BDA /* DistrictItemView.swift */; };
 		468DD0F626B84C7900BE8362 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468DD0F526B84C7900BE8362 /* DetailsViewModel.swift */; };
 		468DD0FA26B84CA900BE8362 /* CovidDistrictUiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468DD0F926B84CA900BE8362 /* CovidDistrictUiModel.swift */; };
 		468DD10226B84EEA00BE8362 /* StateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468DD10126B84EEA00BE8362 /* StateListView.swift */; };
@@ -27,6 +30,9 @@
 		2E0771D1F3036B96DA2B221A /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4686426426B97C6D005C5BDA /* StateItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateItemView.swift; sourceTree = "<group>"; };
 		4686426726B98A65005C5BDA /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		4686426A26B993FE005C5BDA /* DistrictListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictListScreen.swift; sourceTree = "<group>"; };
+		4686426D26B994A2005C5BDA /* DistrictListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictListView.swift; sourceTree = "<group>"; };
+		4686427026B994E9005C5BDA /* DistrictItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistrictItemView.swift; sourceTree = "<group>"; };
 		468DD0F526B84C7900BE8362 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		468DD0F926B84CA900BE8362 /* CovidDistrictUiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidDistrictUiModel.swift; sourceTree = "<group>"; };
 		468DD10126B84EEA00BE8362 /* StateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateListView.swift; sourceTree = "<group>"; };
@@ -65,6 +71,9 @@
 			children = (
 				468DD0F526B84C7900BE8362 /* DetailsViewModel.swift */,
 				468DD0F926B84CA900BE8362 /* CovidDistrictUiModel.swift */,
+				4686426A26B993FE005C5BDA /* DistrictListScreen.swift */,
+				4686426D26B994A2005C5BDA /* DistrictListView.swift */,
+				4686427026B994E9005C5BDA /* DistrictItemView.swift */,
 			);
 			path = StateDetails;
 			sourceTree = "<group>";
@@ -248,13 +257,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4686426E26B994A2005C5BDA /* DistrictListView.swift in Sources */,
 				46BF415626B6787000FCBCF3 /* CovidStateUiModel.swift in Sources */,
+				4686426B26B993FE005C5BDA /* DistrictListScreen.swift in Sources */,
 				4686426826B98A65005C5BDA /* InfoView.swift in Sources */,
 				46BF415226B675B800FCBCF3 /* SearchBar.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				468DD10226B84EEA00BE8362 /* StateListView.swift in Sources */,
 				46BF414926B6758D00FCBCF3 /* StateViewModel.swift in Sources */,
 				4686426526B97C6D005C5BDA /* StateItemView.swift in Sources */,
+				4686427126B994E9005C5BDA /* DistrictItemView.swift in Sources */,
 				468DD0F626B84C7900BE8362 /* DetailsViewModel.swift in Sources */,
 				46BF414A26B6758D00FCBCF3 /* StateListScreen.swift in Sources */,
 				46BF414F26B675B000FCBCF3 /* Extensions+View.swift in Sources */,
