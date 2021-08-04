@@ -14,9 +14,10 @@ import SwiftUI
 struct DistrictListScreen: View {
     
     struct Constants {
-        static let navigationTitle = "DistrictList List (India)"
+        static let navigationTitle = "DistrictList List (%@)"
     }
     @State var query: String = ""
+    var stateCode: String
     
     @ObservedObject var viewModel = DetailsViewModel()
     
@@ -26,27 +27,22 @@ struct DistrictListScreen: View {
                 if (!viewModel.isLoading) {
                     VStack {
                         SearchBar(text: self.$query, onSearch: {
-                            viewModel.onSearch(query: query)
-                        })
+                            viewModel.onSearch(stateCode: self.stateCode, query: query)
+                        }).padding(.top, 12)
                         DistrictListView(items: viewModel.items)
                     }
+                    .navigationBarTitle(Text(String(format: Constants.navigationTitle, self.stateCode)))
                 } else {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .gray))
                         .scaleEffect(1.5)
                 }
             }
-            .navigationBarTitle(Text(Constants.navigationTitle))
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
-                viewModel.loadData()
+                viewModel.loadData(stateCode: self.stateCode)
             })
             .hideKeyboardWhenTappedAround()
         }.navigationViewStyle(StackNavigationViewStyle())
-    }
-}
-
-struct DistrictListScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        DistrictListScreen()
     }
 }

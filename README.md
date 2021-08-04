@@ -6,6 +6,10 @@ Android and iOS applications having shared code for API, storage, and logic usin
 
 ✅ Android Application
 
-❌ iOS Application (In Progress)
+✅  iOS Application
+
+❌ Update iOS search behaviour to match with Android
+
+❌ Add Data formatting at common layer
 
 ❌ Migrate Android UI to Jetpack Compose (Not Started)

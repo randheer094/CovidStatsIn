@@ -23,16 +23,17 @@ struct StateListScreen: View {
                     VStack {
                         SearchBar(text: self.$query, onSearch: {
                             viewModel.onSearch(query: query)
-                        })
+                        }).padding(.top, 12)
                         StateListView(items: viewModel.items)
                     }
+                    .navigationBarTitle(Text(Constants.navigationTitle))
                 } else {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .gray))
                         .scaleEffect(1.5)
                 }
             }
-            .navigationBarTitle(Text(Constants.navigationTitle))
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
                 viewModel.loadData()
             })

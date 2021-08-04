@@ -12,14 +12,13 @@ import MultiPlatformLibrary
 class DetailsViewModel: ObservableObject {
     
     let repository = RepositoryProviderKt.getCovidRepository()
-    var stateCode = "BR"
     
     @Published var items = [CovidDistrictUiModel]()
     @Published var isLoading = false
     
-    func loadData() {
+    func loadData(stateCode: String) {
         self.isLoading = true
-        repository.getDistricts(stateCode: self.stateCode, completionHandler: {
+        repository.getDistricts(stateCode: stateCode, completionHandler: {
             (items: [CovidDistrictStats]?, e: Error?) in
             if e == nil {
                 let data = items ?? []
@@ -31,9 +30,9 @@ class DetailsViewModel: ObservableObject {
         })
     }
 
-    func onSearch(query: String) {
+    func onSearch(stateCode: String, query: String) {
         self.isLoading = true
-        repository.searchDistrict(stateCode: self.stateCode, query: query,  completionHandler: {
+        repository.searchDistrict(stateCode: stateCode, query: query,  completionHandler: {
             (items: [CovidDistrictStats]?, e: Error?) in
             if e == nil {
                 let data = items ?? []
