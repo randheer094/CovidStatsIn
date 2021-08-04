@@ -7,14 +7,16 @@
 import SwiftUI
 
 struct SearchBar: View {
+    
     @Binding var text: String
- 
-    @State private var isEditing = false
+    var placeholder: String
     var onSearch: () -> Void
  
+    @State private var isEditing = false
+  
     var body: some View {
         HStack { 
-            TextField("Search by state name or code", text: $text, onEditingChanged: { active in
+            TextField(self.placeholder, text: $text, onEditingChanged: { active in
             }, onCommit: {
                 self.onSearch()
             })

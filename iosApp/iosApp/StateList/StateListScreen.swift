@@ -11,6 +11,7 @@ struct StateListScreen: View {
     
     struct Constants {
         static let navigationTitle = "State/UT List (India)"
+        static let searchPlaceHolder = "Search by state name or code"
     }
     @State var query: String = ""
     
@@ -21,9 +22,11 @@ struct StateListScreen: View {
             ZStack {
                 if (!viewModel.isLoading) {
                     VStack {
-                        SearchBar(text: self.$query, onSearch: {
-                            viewModel.onSearch(query: query)
-                        }).padding(.top, 12)
+                        SearchBar(
+                            text: self.$query,
+                            placeholder: Constants.searchPlaceHolder,
+                            onSearch: { viewModel.onSearch(query: query) }
+                        ).padding(.top, 12)
                         StateListView(items: viewModel.items)
                     }
                     .navigationBarTitle(Text(Constants.navigationTitle))

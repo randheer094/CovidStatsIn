@@ -14,7 +14,8 @@ import SwiftUI
 struct DistrictListScreen: View {
     
     struct Constants {
-        static let navigationTitle = "DistrictList List (%@)"
+        static let navigationTitle = "District List (%@)"
+        static let searchPlaceHolder = "Search by district name"
     }
     @State var query: String = ""
     var stateCode: String
@@ -26,9 +27,11 @@ struct DistrictListScreen: View {
             ZStack {
                 if (!viewModel.isLoading) {
                     VStack {
-                        SearchBar(text: self.$query, onSearch: {
-                            viewModel.onSearch(stateCode: self.stateCode, query: query)
-                        }).padding(.top, 12)
+                        SearchBar(
+                            text: self.$query,
+                            placeholder: Constants.searchPlaceHolder,
+                            onSearch: { viewModel.onSearch(stateCode: self.stateCode,query: query)}
+                        ).padding(.top, 12)
                         DistrictListView(items: viewModel.items)
                     }
                     .navigationBarTitle(Text(String(format: Constants.navigationTitle, self.stateCode)))
