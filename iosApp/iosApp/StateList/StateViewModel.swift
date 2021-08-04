@@ -27,14 +27,12 @@ class StateViewModel: ObservableObject {
     }
 
     func onSearch(query: String) {
-        self.isLoading = true
         repository.searchStates(query: query, completionHandler: { (items: [CovidStateStats]?, e: Error?) in
             if e == nil {
                 let data = items ?? []
                 self.items = data.map {
                     CovidStateUiModel.fromCovidStateStats(input: $0)
                 }
-                self.isLoading = false
             }
         })
     }

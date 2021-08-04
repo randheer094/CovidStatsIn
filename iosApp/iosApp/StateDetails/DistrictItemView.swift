@@ -30,7 +30,7 @@ struct DistrictItemView: View {
                         infoColor: Color(red: 204/255, green: 68/255, blue: 68/255, opacity: 1))
                     InfoView(
                         title: "Deceased",
-                        info: item.confirmed,
+                        info: item.deceased,
                         infoColor: Color.red)
                 }
                 HStack {
@@ -46,7 +46,7 @@ struct DistrictItemView: View {
                 HStack {
                     InfoView(
                         title: "Partially Vaccinated",
-                        info: item.confirmed,
+                        info: item.vaccinated1,
                         infoColor: Color(red: 153/255, green: 204/255, blue: 0/255, opacity: 1))
                     InfoView(
                         title: "Fully Vaccinated",

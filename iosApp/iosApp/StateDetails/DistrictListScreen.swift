@@ -30,7 +30,9 @@ struct DistrictListScreen: View {
                         SearchBar(
                             text: self.$query,
                             placeholder: Constants.searchPlaceHolder,
-                            onSearch: { viewModel.onSearch(stateCode: self.stateCode,query: query)}
+                            onSearch: { (query: String) in
+                                viewModel.onSearch(stateCode: self.stateCode,query: query)
+                            }
                         ).padding(.top, 12)
                         DistrictListView(items: viewModel.items)
                     }

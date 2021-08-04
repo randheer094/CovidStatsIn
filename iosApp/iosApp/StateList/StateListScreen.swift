@@ -25,7 +25,9 @@ struct StateListScreen: View {
                         SearchBar(
                             text: self.$query,
                             placeholder: Constants.searchPlaceHolder,
-                            onSearch: { viewModel.onSearch(query: query) }
+                            onSearch: { (query: String) in
+                                viewModel.onSearch(query: query)
+                            }
                         ).padding(.top, 12)
                         StateListView(items: viewModel.items)
                     }

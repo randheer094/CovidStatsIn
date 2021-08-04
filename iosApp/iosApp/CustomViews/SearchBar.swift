@@ -10,16 +10,15 @@ struct SearchBar: View {
     
     @Binding var text: String
     var placeholder: String
-    var onSearch: () -> Void
+    var onSearch: (String) -> Void
  
     @State private var isEditing = false
   
     var body: some View {
         HStack { 
-            TextField(self.placeholder, text: $text, onEditingChanged: { active in
-            }, onCommit: {
-                self.onSearch()
-            })
+            TextField(self.placeholder, text: $text.onChange({ (value) in
+                onSearch(value)
+            }))
                 .padding(8)
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
@@ -32,7 +31,7 @@ struct SearchBar: View {
                 Button(action: {
                     self.isEditing = false
                     self.text = ""
-                    self.onSearch()
+                    self.onSearch("")
                 }) {
                     Text("Cancel")
                 }
@@ -42,5 +41,17 @@ struct SearchBar: View {
                 .animation(.default)
             }
         }
+    }
+}
+
+extension Binding {
+    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
+        Binding(
+            get: { self.wrappedValue },
+            set: { newValue in
+                self.wrappedValue = newValue
+                handler(newValue)
+            }
+        )
     }
 }
