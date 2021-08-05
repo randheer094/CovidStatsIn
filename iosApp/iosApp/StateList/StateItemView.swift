@@ -7,16 +7,17 @@
 //
 
 import SwiftUI
+import MultiPlatformLibrary
 
 struct StateItemView: View {
     
-    var item: CovidStateUiModel
+    var item: StateUiModel
     
     var body: some View {
         NavigationLink(destination: DistrictListScreen(stateCode: item.code)) {
             ZStack {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
-                    .fill(getCardBgColor(code: item.code))
+                    .fill(Color.init(hex: item.cardBgColor))
                     .shadow(radius: 2)
                 VStack(alignment: .leading) {
                     HStack {
@@ -26,31 +27,31 @@ struct StateItemView: View {
                     Divider()
                     HStack {
                         InfoView(
-                            title: "Confirmed",
+                            title: item.confirmedTitle,
                             info: item.confirmed,
                             infoColor: Color(red: 204/255, green: 68/255, blue: 68/255, opacity: 1))
                         InfoView(
-                            title: "Deceased",
+                            title: item.deceasedTitle,
                             info: item.deceased,
                             infoColor: Color.red)
                     }
                     HStack {
                         InfoView(
-                            title: "Recovered",
+                            title: item.recoveredTitle,
                             info: item.recovered,
                             infoColor: Color(red: 153/255, green: 204/255, blue: 0/255, opacity: 1))
                         InfoView(
-                            title: "Tested",
+                            title: item.testedTitle,
                             info: item.tested,
                             infoColor: Color.black)
                     }
                     HStack {
                         InfoView(
-                            title: "Partially Vaccinated",
+                            title: item.vaccinated1Title,
                             info: item.vaccinated1,
                             infoColor: Color(red: 153/255, green: 204/255, blue: 0/255, opacity: 1))
                         InfoView(
-                            title: "Fully Vaccinated",
+                            title: item.vaccinated2Title,
                             info: item.vaccinated2,
                             infoColor: Color.green)
                     }
@@ -61,15 +62,7 @@ struct StateItemView: View {
                 }
                 .padding(12)
             }
-        }
-    }
-    
-    func getCardBgColor(code: String) -> Color {
-        if code == "TT" {
-            return Color(red: 204/255, green: 204/255, blue: 204/255, opacity: 1)
-        } else {
-            return Color.white
-        }
+        }.disabled(!item.clickable)
     }
 }
 

@@ -16,9 +16,10 @@ struct SearchBar: View {
   
     var body: some View {
         HStack { 
-            TextField(self.placeholder, text: $text.onChange({ (value) in
-                onSearch(value)
-            }))
+            TextField(self.placeholder, text: $text)
+                .onChange(of: text, perform: { (query) in
+                    onSearch(query)
+                })
                 .padding(8)
                 .background(Color(.systemGray6))
                 .cornerRadius(8)
@@ -41,17 +42,5 @@ struct SearchBar: View {
                 .animation(.default)
             }
         }
-    }
-}
-
-extension Binding {
-    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
-        Binding(
-            get: { self.wrappedValue },
-            set: { newValue in
-                self.wrappedValue = newValue
-                handler(newValue)
-            }
-        )
     }
 }

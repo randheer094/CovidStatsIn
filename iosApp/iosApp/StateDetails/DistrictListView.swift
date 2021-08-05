@@ -7,15 +7,16 @@
 //
 
 import SwiftUI
+import MultiPlatformLibrary
 
 struct DistrictListView: View {
     
-    var items: [CovidDistrictUiModel] = []
+    var items: [DistrictUiModel] = []
         
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(items) { item in
+                ForEach(items, id: \.name) { item in
                     DistrictItemView(item: item)
                         .padding(.top, 8)
                         .padding(.leading, 12)

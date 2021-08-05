@@ -6,7 +6,6 @@ import me.randheer.covidstatsin.db.CovidStats
 
 expect fun createDriver(): SqlDriver
 
-
 object Db {
     private var dbRef: Atomic<CovidStats?> = Atomic(null)
 

@@ -7,15 +7,16 @@
 //
 
 import SwiftUI
+import MultiPlatformLibrary
 
 struct StateListView: View {
     
-    var items: [CovidStateUiModel] = []
+    var items: [StateUiModel] = []
         
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(items) { item in
+                ForEach(items, id: \.code) { item in
                     StateItemView(item: item)
                         .padding(.top, 8)
                         .padding(.leading, 12)

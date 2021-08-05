@@ -11,36 +11,24 @@ import MultiPlatformLibrary
 
 class DetailsViewModel: ObservableObject {
     
-    let repository = RepositoryProviderKt.getCovidRepository()
-    
-    @Published var items = [CovidDistrictUiModel]()
+    @Published var metaData = DistrictListMetaData(title: "", searchPlaceholder: "")
+    @Published var items = [DistrictUiModel]()
     @Published var isLoading = false
     
-    func loadData(stateCode: String) {
-        self.isLoading = true
-        repository.getDistricts(stateCode: stateCode, completionHandler: {
-            (items: [CovidDistrictStats]?, e: Error?) in
-            if e == nil {
-                let data = items ?? []
-                self.items = data.map {
-                    CovidDistrictUiModel.fromCovidDistrictUiModel(input: $0)
-                }
-                self.isLoading = false
-            }
-        })
+    func loadMetaData(stateCode: String) {
+        let param = DistrictListMetaDataUseCase.Param(stateCode: stateCode)
+        self.metaData = ProvidersKt.districtMetaDataUseCase.run(input:param)
     }
-
-    func onSearch(stateCode: String, query: String) {
-        self.isLoading = true
-        repository.searchDistrict(stateCode: stateCode, query: query,  completionHandler: {
-            (items: [CovidDistrictStats]?, e: Error?) in
+    
+    func getDistricts(stateCode: String, query: String) {
+        self.isLoading = query.isEmpty
+        let param = GetDistrictListUseCase.Param(stateCode: stateCode, query: query)
+        ProvidersKt.districtUseCase.run(input:param) { (items: [DistrictUiModel]?, e: Error?) in
             if e == nil {
                 let data = items ?? []
-                self.items = data.map {
-                    CovidDistrictUiModel.fromCovidDistrictUiModel(input: $0)
-                }
-                self.isLoading = false
+                self.items = data
             }
-        })
+            self.isLoading = false
+        }
     }
 } 

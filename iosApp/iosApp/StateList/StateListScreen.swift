@@ -9,10 +9,6 @@ import SwiftUI
 
 struct StateListScreen: View {
     
-    struct Constants {
-        static let navigationTitle = "State/UT List (India)"
-        static let searchPlaceHolder = "Search by state name or code"
-    }
     @State var query: String = ""
     
     @ObservedObject var viewModel = StateViewModel()
@@ -24,14 +20,14 @@ struct StateListScreen: View {
                     VStack {
                         SearchBar(
                             text: self.$query,
-                            placeholder: Constants.searchPlaceHolder,
+                            placeholder: viewModel.metaData.searchPlaceholder,
                             onSearch: { (query: String) in
-                                viewModel.onSearch(query: query)
+                                viewModel.getStates(query: query)
                             }
                         ).padding(.top, 12)
                         StateListView(items: viewModel.items)
                     }
-                    .navigationBarTitle(Text(Constants.navigationTitle))
+                    .navigationBarTitle(Text(viewModel.metaData.title))
                 } else {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .gray))
@@ -40,7 +36,8 @@ struct StateListScreen: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
-                viewModel.loadData()
+                viewModel.loadMetaData()
+                viewModel.getStates(query: "")
             })
             .hideKeyboardWhenTappedAround()
         }.navigationViewStyle(StackNavigationViewStyle())

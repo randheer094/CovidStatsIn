@@ -17,7 +17,13 @@ insertNew:
 INSERT INTO CovidStateStats (code, name, confirmed, deceased, recovered, tested, vaccinated1, vaccinated2, population, vaccinationUpdatedAt, testedUpdatedAt, updatedAt)
 VALUES ?;
 
-getBySearchTerm:
+getItemCount:
+SELECT COUNT(*) FROM CovidStateStats;
+
+getAll:
+SELECT * FROM CovidStateStats;
+
+searchByQuery:
 SELECT * FROM CovidStateStats WHERE code != 'TT' AND (code LIKE ? OR name LIKE ?);
 
 deleteAll:

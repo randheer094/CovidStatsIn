@@ -13,10 +13,6 @@ import SwiftUI
 
 struct DistrictListScreen: View {
     
-    struct Constants {
-        static let navigationTitle = "District List (%@)"
-        static let searchPlaceHolder = "Search by district name"
-    }
     @State var query: String = ""
     var stateCode: String
     
@@ -24,19 +20,19 @@ struct DistrictListScreen: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
+            ZStack { 
                 if (!viewModel.isLoading) {
                     VStack {
                         SearchBar(
                             text: self.$query,
-                            placeholder: Constants.searchPlaceHolder,
+                            placeholder: viewModel.metaData.searchPlaceholder,
                             onSearch: { (query: String) in
-                                viewModel.onSearch(stateCode: self.stateCode,query: query)
+                                viewModel.getDistricts(stateCode: self.stateCode,query: query)
                             }
                         ).padding(.top, 12)
                         DistrictListView(items: viewModel.items)
                     }
-                    .navigationBarTitle(Text(String(format: Constants.navigationTitle, self.stateCode)))
+                    .navigationBarTitle(Text(String(format: viewModel.metaData.title, self.stateCode)))
                 } else {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .gray))
@@ -45,7 +41,8 @@ struct DistrictListScreen: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
-                viewModel.loadData(stateCode: self.stateCode)
+                viewModel.loadMetaData(stateCode: self.stateCode)
+                viewModel.getDistricts(stateCode: self.stateCode, query: "")
             })
             .hideKeyboardWhenTappedAround()
         }.navigationViewStyle(StackNavigationViewStyle())
