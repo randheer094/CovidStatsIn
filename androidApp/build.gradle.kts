@@ -16,6 +16,9 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.3.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+
+    val composeVersion = "1.0.1"
+    implementation("androidx.compose.runtime:runtime:$composeVersion")
 }
 
 android {
@@ -34,5 +37,9 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.0.1"
     }
 }
