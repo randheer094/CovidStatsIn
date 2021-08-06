@@ -6,8 +6,5 @@ Android and iOS applications having shared code for API, storage, and logic usin
 - Android Application ✅ 
 - iOS Application ✅ 
 
-### In Progress
-- Migrate Android UI to Jetpack Compose 🚧, Check `task/andorid-jetpack-compose` branch.
-
 ### TODO
 - Add Data formatting at common layer ❌

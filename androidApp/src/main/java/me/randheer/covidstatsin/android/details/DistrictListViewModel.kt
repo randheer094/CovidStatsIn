@@ -12,7 +12,8 @@ import me.randheer.covidstatsin.domain.model.DistrictUiModel
 import me.randheer.covidstatsin.domain.usecases.DistrictListMetaDataUseCase
 import me.randheer.covidstatsin.domain.usecases.GetDistrictListUseCase
 
-class DistrictListViewModel : ViewModel() {
+class DistrictListViewModel() : ViewModel() {
+    private val stateCode: String = "BR"
     private val _loading: MutableLiveData<Boolean> = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
 
@@ -21,17 +22,23 @@ class DistrictListViewModel : ViewModel() {
 
     private var job: Job? = null
 
-    fun getMetaData(stateCode: String) = districtMetaDataUseCase.run(
+    init {
+        getDistricts()
+    }
+
+    fun getMetaData() = districtMetaDataUseCase.run(
         DistrictListMetaDataUseCase.Param(stateCode)
     )
 
-    fun getDistricts(stateCode: String, query: String = "") {
+    fun getDistricts(query: String = "") {
         job?.cancel()
+        _loading.postValue(query.isEmpty())
         job = viewModelScope.launch {
             val stateStats = districtUseCase.run(
                 GetDistrictListUseCase.Param(stateCode, query)
             )
             _items.postValue(stateStats)
+            _loading.postValue(false)
         }
     }
 }
