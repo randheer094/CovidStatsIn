@@ -66,10 +66,11 @@ fun DistrictList(
 fun DistrictItem(
     item: DistrictUiModel
 ) {
-    Box(modifier = Modifier.padding(bottom = 8.dp)) {
+    Box(modifier = Modifier.padding(bottom = 8.dp, top = 2.dp)) {
         Card(
             shape = RoundedCornerShape(8.dp),
             backgroundColor = MaterialTheme.colors.surface,
+            elevation = 4.dp
         ) {
             Column(
                 modifier = Modifier

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -32,6 +33,7 @@ fun SearchBox(
         modifier = Modifier
             .padding(PaddingValues(start = 16.dp, end = 16.dp, top = 8.dp))
             .fillMaxWidth(),
+        shape = MaterialTheme.shapes.large,
         placeholder = { Text(text = placeholder) },
         onValueChange = {
             text = it

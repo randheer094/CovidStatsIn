@@ -65,13 +65,14 @@ fun StateItem(
     navController: NavController,
     item: StateUiModel
 ) {
-    Box(modifier = Modifier.padding(bottom = 8.dp)) {
+    Box(modifier = Modifier.padding(bottom = 8.dp, top = 2.dp)) {
         Card(
             shape = RoundedCornerShape(8.dp),
             backgroundColor = ColorUtil.getColor(item.cardBgColor),
             modifier = Modifier.clickable(enabled = item.clickable) {
                 navController.navigate(Screens.DistrictList.route)
-            }
+            },
+            elevation = 4.dp
         ) {
             Column(
                 modifier = Modifier
