@@ -8,4 +8,3 @@ Android and iOS applications having shared code for API, storage, and logic usin
 
 ### TODO
 - Refresh local data on App start ❌
-- Add Data formatting at common layer ❌
