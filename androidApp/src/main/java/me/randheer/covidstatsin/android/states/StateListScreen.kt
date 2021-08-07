@@ -8,11 +8,11 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import me.randheer.covidstatsin.android.details.DistrictListScreenProps
@@ -28,7 +28,8 @@ fun StateListScreen(
     viewModel: StateListViewModel = viewModel()
 ) {
     val metaData = viewModel.getMetaData()
-    val loading by viewModel.loading.observeAsState()
+    val loading by viewModel.loading.observeAsState(false)
+    val states: List<StateUiModel> by viewModel.items.observeAsState(emptyList())
     Scaffold(
         topBar = {
             TopAppBar(
@@ -37,24 +38,34 @@ fun StateListScreen(
                 }
             )
         }, content = {
-            if (loading == true) {
-                CircularProgressIndicator()
-            } else {
-                Column {
-                    SearchBox(metaData.searchPlaceholder) { viewModel.getStates(it) }
-                    StateList(navController = navController, items = viewModel.items)
+            Box(modifier = Modifier.fillMaxSize()) {
+                if (loading) {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator(
+                            Modifier
+                                .width(56.dp)
+                                .height(56.dp)
+                        )
+                    }
+                } else {
+                    Column {
+                        SearchBox(metaData.searchPlaceholder) { viewModel.getStates(it) }
+                        StateList(navController = navController, states = states)
+                    }
                 }
             }
-
         })
 }
 
 @Composable
 fun StateList(
     navController: NavController,
-    items: LiveData<List<StateUiModel>>
+    states: List<StateUiModel>
 ) {
-    val states: List<StateUiModel> by items.observeAsState(emptyList())
     LazyColumn(contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)) {
         items(states.size, key = { i -> states[i].code }) { idx ->
             StateItem(navController = navController, item = states[idx])

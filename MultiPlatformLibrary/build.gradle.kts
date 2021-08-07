@@ -32,7 +32,7 @@ kotlin {
 
     val ktorVersion = "1.6.2"
     val serializationVersion = "1.2.1"
-    val coroutineVersion = "1.3.0"
+    val coroutineVersion = "1.5.0"
     val sqlDelightVersion = "1.5.0"
 
     sourceSets {

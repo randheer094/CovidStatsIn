@@ -9,11 +9,11 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import me.randheer.covidstatsin.android.ui.widget.InfoItem
@@ -28,7 +28,8 @@ fun DistrictListScreen(
     viewModel: DistrictListViewModel = viewModel(factory = DistrictListViewModelFactory(stateCode))
 ) {
     val metaData = viewModel.getMetaData()
-    val loading by viewModel.loading.observeAsState()
+    val loading by viewModel.loading.observeAsState(true)
+    val districts: List<DistrictUiModel> by viewModel.items.observeAsState(emptyList())
     Scaffold(
         topBar = {
             TopAppBar(
@@ -42,12 +43,24 @@ fun DistrictListScreen(
                 }
             )
         }, content = {
-            if (loading == true) {
-                CircularProgressIndicator()
-            } else {
-                Column {
-                    SearchBox(metaData.searchPlaceholder) { viewModel.getDistricts(it) }
-                    DistrictList(items = viewModel.items)
+            Box(modifier = Modifier.fillMaxSize()) {
+                if (loading) {
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator(
+                            Modifier
+                                .width(56.dp)
+                                .height(56.dp)
+                        )
+                    }
+                } else {
+                    Column {
+                        SearchBox(metaData.searchPlaceholder) { viewModel.getDistricts(it) }
+                        DistrictList(districts = districts)
+                    }
                 }
             }
         })
@@ -55,12 +68,11 @@ fun DistrictListScreen(
 
 @Composable
 fun DistrictList(
-    items: LiveData<List<DistrictUiModel>>
+    districts: List<DistrictUiModel>
 ) {
-    val dis: List<DistrictUiModel> by items.observeAsState(emptyList())
     LazyColumn(contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)) {
-        items(dis.size, key = { i -> dis[i].name }) { idx ->
-            DistrictItem(item = dis[idx])
+        items(districts.size, key = { i -> districts[i].name }) { idx ->
+            DistrictItem(item = districts[idx])
         }
     }
 }

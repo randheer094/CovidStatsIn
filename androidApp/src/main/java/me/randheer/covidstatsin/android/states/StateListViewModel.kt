@@ -13,7 +13,7 @@ import me.randheer.covidstatsin.domain.usecases.GetStateListUseCase
 
 class StateListViewModel : ViewModel() {
 
-    private val _loading: MutableLiveData<Boolean> = MutableLiveData(false)
+    private val _loading: MutableLiveData<Boolean> = MutableLiveData()
     val loading: LiveData<Boolean> = _loading
 
     private val _items: MutableLiveData<List<StateUiModel>> = MutableLiveData()
