@@ -15,33 +15,23 @@ private val Roboto = FontFamily(
 
 val AppTypes = Typography(
     defaultFontFamily = Roboto,
-    h4 = TextStyle(
+    h2 = TextStyle(
         fontWeight = FontWeight.SemiBold,
-        fontSize = 30.sp,
+        fontSize = 18.sp,
         letterSpacing = 0.sp
     ),
-    subtitle2 = TextStyle(
-        fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
-        letterSpacing = 0.1.sp
-    ),
     body1 = TextStyle(
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,
-        letterSpacing = 0.5.sp
+        letterSpacing = 0.4.sp
     ),
     body2 = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        letterSpacing = 0.25.sp
-    ),
-    button = TextStyle(
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp,
-        letterSpacing = 1.25.sp
+        letterSpacing = 0.4.sp
     ),
     caption = TextStyle(
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         letterSpacing = 0.4.sp
     )

@@ -11,10 +11,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import me.randheer.covidstatsin.android.ui.widget.InfoItem
 import me.randheer.covidstatsin.android.ui.widget.SearchBox
 import me.randheer.covidstatsin.domain.model.DistrictUiModel
 
@@ -76,9 +78,54 @@ fun DistrictItem(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp)
+                    .padding(12.dp)
             ) {
-                Text(text = item.name)
+                Text(text = item.name, style = MaterialTheme.typography.h2)
+                Spacer(modifier = Modifier.height(8.dp))
+                Divider()
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(modifier = Modifier.padding(bottom = 8.dp)) {
+                    InfoItem(
+                        title = item.confirmedTitle,
+                        value = item.confirmed,
+                        valueColor = Color(204, 68, 68),
+                        modifier = Modifier.fillMaxWidth(0.5f)
+                    )
+                    InfoItem(
+                        title = item.deceasedTitle,
+                        value = item.deceased,
+                        valueColor = Color.Red,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+                Row(modifier = Modifier.padding(bottom = 8.dp)) {
+                    InfoItem(
+                        title = item.recoveredTitle,
+                        value = item.recovered,
+                        valueColor = Color(153, 204, 0),
+                        modifier = Modifier.fillMaxWidth(0.5f)
+                    )
+                    InfoItem(
+                        title = item.testedTitle,
+                        value = item.tested,
+                        valueColor = Color.Black,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+                Row(modifier = Modifier.padding(bottom = 8.dp)) {
+                    InfoItem(
+                        title = item.vaccinated1Title,
+                        value = item.vaccinated1,
+                        valueColor = Color(153, 204, 0),
+                        modifier = Modifier.fillMaxWidth(0.5f)
+                    )
+                    InfoItem(
+                        title = item.vaccinated2Title,
+                        value = item.vaccinated2,
+                        valueColor = Color.Green,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
         }
     }
