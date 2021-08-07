@@ -17,7 +17,7 @@ struct InfoView: View {
         VStack {
             HStack {
                 Text(title)
-                    .font(.body)
+                    .font(.callout)
                     .foregroundColor(Color.black)
                     .fixedSize()
                 Spacer( )

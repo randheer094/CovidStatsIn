@@ -21,13 +21,19 @@ class StateListViewModel : ViewModel() {
 
     private var job: Job? = null
 
+    init {
+        getStates()
+    }
+
     fun getMetaData() = stateMetaDataUseCase.run(Unit)
 
     fun getStates(searchText: String = "") {
         job?.cancel()
+        _loading.postValue(searchText.isEmpty())
         job = viewModelScope.launch {
             val stateStats = stateUseCase.run(GetStateListUseCase.Param(searchText))
             _items.postValue(stateStats)
+            _loading.postValue(false)
         }
     }
 }
