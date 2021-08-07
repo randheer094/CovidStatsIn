@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import me.randheer.covidstatsin.android.navigation.Screens
+import me.randheer.covidstatsin.android.details.DistrictListScreenProps
 import me.randheer.covidstatsin.android.ui.widget.SearchBox
 import me.randheer.covidstatsin.android.util.ColorUtil
 import me.randheer.covidstatsin.domain.model.StateUiModel
@@ -22,8 +22,8 @@ import me.randheer.covidstatsin.domain.model.StateUiModel
 @ExperimentalComposeUiApi
 @Composable
 fun StateListScreen(
-    viewModel: StateListViewModel = viewModel(),
-    navController: NavController
+    navController: NavController,
+    viewModel: StateListViewModel = viewModel()
 ) {
     val metaData = viewModel.getMetaData()
     val loading by viewModel.loading.observeAsState()
@@ -70,7 +70,7 @@ fun StateItem(
             shape = RoundedCornerShape(8.dp),
             backgroundColor = ColorUtil.getColor(item.cardBgColor),
             modifier = Modifier.clickable(enabled = item.clickable) {
-                navController.navigate(Screens.DistrictList.route)
+                navController.navigate(DistrictListScreenProps.getPath(item.code))
             },
             elevation = 4.dp
         ) {

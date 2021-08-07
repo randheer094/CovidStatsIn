@@ -1,9 +1,6 @@
 package me.randheer.covidstatsin.android.details
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import me.randheer.covidstatsin.di.districtMetaDataUseCase
@@ -12,8 +9,9 @@ import me.randheer.covidstatsin.domain.model.DistrictUiModel
 import me.randheer.covidstatsin.domain.usecases.DistrictListMetaDataUseCase
 import me.randheer.covidstatsin.domain.usecases.GetDistrictListUseCase
 
-class DistrictListViewModel() : ViewModel() {
-    private val stateCode: String = "BR"
+class DistrictListViewModel(
+    private val stateCode: String
+) : ViewModel() {
     private val _loading: MutableLiveData<Boolean> = MutableLiveData(false)
     val loading: LiveData<Boolean> = _loading
 
@@ -41,4 +39,10 @@ class DistrictListViewModel() : ViewModel() {
             _loading.postValue(false)
         }
     }
+}
+
+class DistrictListViewModelFactory(private val stateCode: String) :
+    ViewModelProvider.NewInstanceFactory() {
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+        DistrictListViewModel(stateCode = stateCode) as T
 }

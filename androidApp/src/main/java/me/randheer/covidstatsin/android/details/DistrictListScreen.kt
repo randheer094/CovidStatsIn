@@ -21,8 +21,9 @@ import me.randheer.covidstatsin.domain.model.DistrictUiModel
 @ExperimentalComposeUiApi
 @Composable
 fun DistrictListScreen(
-    viewModel: DistrictListViewModel = viewModel(),
-    navController: NavController
+    navController: NavController,
+    stateCode: String,
+    viewModel: DistrictListViewModel = viewModel(factory = DistrictListViewModelFactory(stateCode))
 ) {
     val metaData = viewModel.getMetaData()
     val loading by viewModel.loading.observeAsState()
