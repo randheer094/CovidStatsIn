@@ -1,11 +1,13 @@
 package me.randheer.covidstatsin.data.repo
 
 import me.randheer.covidstatsin.data.local.DistrictLocalDataSource
+import me.randheer.covidstatsin.data.local.Prefs
 import me.randheer.covidstatsin.data.local.StateLocalDataSource
 import me.randheer.covidstatsin.data.mapper.ApiEntityMapper
 import me.randheer.covidstatsin.data.remote.CovidRemoteDataSource
 import me.randheer.covidstatsin.db.CovidStateStats
 import me.randheer.covidstatsin.domain.repo.StateRepository
+import me.randheer.covidstatsin.utils.getTodayDayOfYear
 
 class StateRepositoryImpl(
     private val remoteDataSource: CovidRemoteDataSource,
@@ -13,9 +15,11 @@ class StateRepositoryImpl(
     private val districtLocalDataSource: DistrictLocalDataSource,
     private val apiEntityMapper: ApiEntityMapper
 ) : StateRepository {
+    private val lastUpdatedAtKey = "latUpdatedAtKey-loadData"
 
     override suspend fun getStates(query: String): List<CovidStateStats> {
-        if (localDataSource.isEmpty()) {
+        val expired = Prefs.getRef().int(lastUpdatedAtKey) != getTodayDayOfYear()
+        if (localDataSource.isEmpty() || expired) {
             loadData()
         }
         return if (query.isEmpty()) getStates()
@@ -27,6 +31,7 @@ class StateRepositoryImpl(
         val entityData = apiEntityMapper.map(data)
         localDataSource.save(entityData.first)
         districtLocalDataSource.save(entityData.second)
+        Prefs.getRef().set(lastUpdatedAtKey, getTodayDayOfYear())
     }
 
     private fun getStates(): List<CovidStateStats> {

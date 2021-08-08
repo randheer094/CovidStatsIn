@@ -31,7 +31,7 @@ kotlin {
     }
 
     val ktorVersion = "1.6.2"
-    val serializationVersion = "1.2.1"
+    val serializationVersion = "1.2.2"
     val coroutineVersion = "1.5.0"
     val sqlDelightVersion = "1.5.0"
 
@@ -47,6 +47,8 @@ kotlin {
                     }
                 }
                 api("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                api("org.jetbrains.kotlinx:kotlinx-datetime:0.2.1")
+                api("com.liftric:kvault:1.6.0")
             }
         }
         val androidMain by getting {
