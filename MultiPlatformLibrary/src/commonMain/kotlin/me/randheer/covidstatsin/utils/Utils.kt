@@ -1,5 +1,8 @@
 package me.randheer.covidstatsin.utils
 
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import kotlin.math.abs
 
 fun Long?.toDisplayFormat(): String {
@@ -25,3 +28,6 @@ fun formatNumberIn(num: Long): String {
     val sign = if (num < 0) "-" else ""
     return sign + sb.reverse().toString()
 }
+
+fun getTodayDayOfYear() =
+    Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault()).dayOfYear
