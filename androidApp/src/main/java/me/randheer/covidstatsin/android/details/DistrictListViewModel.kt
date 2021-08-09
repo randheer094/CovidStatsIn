@@ -32,10 +32,10 @@ class DistrictListViewModel(
         job?.cancel()
         _loading.postValue(query.isEmpty())
         job = viewModelScope.launch {
-            val stateStats = districtUseCase.run(
+            val districtStats = districtUseCase.run(
                 GetDistrictListUseCase.Param(stateCode, query)
             )
-            _items.postValue(stateStats)
+            _items.postValue(districtStats)
             _loading.postValue(false)
         }
     }

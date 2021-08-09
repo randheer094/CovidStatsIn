@@ -13,6 +13,7 @@ class GetDistrictListUseCase(
     private val mapper: DistrictUiModelMapper
 ) : CoroutineUseCase<GetDistrictListUseCase.Param, List<DistrictUiModel>> {
 
+    @Throws(Exception::class)
     override suspend fun run(input: Param): List<DistrictUiModel> {
         val result = withContext(Dispatchers.Default) {
             repository.getDistrict(input.stateCode, input.query).map { mapper.map(it) }

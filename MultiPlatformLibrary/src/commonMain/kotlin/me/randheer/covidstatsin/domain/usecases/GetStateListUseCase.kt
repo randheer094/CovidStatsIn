@@ -13,6 +13,7 @@ class GetStateListUseCase(
     private val mapper: StateUiModelMapper
 ) : CoroutineUseCase<GetStateListUseCase.Param, List<StateUiModel>> {
 
+    @Throws(Exception::class)
     override suspend fun run(input: Param): List<StateUiModel> {
         val result = withContext(Dispatchers.Default) {
             repository.getStates(input.query).map { mapper.map(it) }
