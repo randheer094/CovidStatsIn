@@ -8,6 +8,9 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -19,6 +22,7 @@ import me.randheer.covidstatsin.android.details.DistrictListScreenProps
 import me.randheer.covidstatsin.android.ui.widget.InfoItem
 import me.randheer.covidstatsin.android.ui.widget.SearchBox
 import me.randheer.covidstatsin.android.util.ColorUtil
+import me.randheer.covidstatsin.android.util.Retry
 import me.randheer.covidstatsin.domain.model.StateUiModel
 
 @ExperimentalComposeUiApi
@@ -29,7 +33,9 @@ fun StateListScreen(
 ) {
     val metaData = viewModel.getMetaData()
     val loading by viewModel.loading.observeAsState(false)
+    val error by viewModel.error.observeAsState("")
     val states: List<StateUiModel> by viewModel.items.observeAsState(emptyList())
+    var query by rememberSaveable { mutableStateOf("") }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -53,9 +59,22 @@ fun StateListScreen(
                     }
                 } else {
                     Column {
-                        SearchBox(metaData.searchPlaceholder) { viewModel.getStates(it) }
+                        SearchBox(metaData.searchPlaceholder, query) {
+                            query = it
+                            viewModel.getStates(it)
+                        }
                         StateList(navController = navController, states = states)
                     }
+                }
+                if (error.isNotEmpty()) {
+                    Snackbar(
+                        action = {
+                            Button(onClick = { viewModel.getStates(query) }) {
+                                Text(Retry)
+                            }
+                        },
+                        modifier = Modifier.padding(8.dp)
+                    ) { Text(text = error) }
                 }
             }
         })

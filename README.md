@@ -6,5 +6,5 @@ Android and iOS applications having shared code for API, storage, and logic usin
 - Android Application ✅ 
 - iOS Application ✅ 
 
-### TODO
-- Error Handling (Network) ❌
+### InProgress
+- Error Handling (Android: Done; iOS: Pending)

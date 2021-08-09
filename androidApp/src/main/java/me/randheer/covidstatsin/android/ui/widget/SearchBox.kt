@@ -9,10 +9,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -24,9 +20,9 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SearchBox(
     placeholder: String,
+    text: String,
     onValueChange: (String) -> Unit,
 ) {
-    var text by rememberSaveable { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
     OutlinedTextField(
         value = text,
@@ -36,7 +32,6 @@ fun SearchBox(
         shape = MaterialTheme.shapes.large,
         placeholder = { Text(text = placeholder) },
         onValueChange = {
-            text = it
             onValueChange(it)
         },
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
@@ -48,5 +43,5 @@ fun SearchBox(
 @Preview
 @Composable
 fun SearchBoxPreview() {
-    SearchBox("Search") {}
+    SearchBox("Search", "") {}
 }

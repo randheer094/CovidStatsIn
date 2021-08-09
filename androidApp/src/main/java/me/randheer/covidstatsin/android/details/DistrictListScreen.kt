@@ -9,6 +9,9 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -30,6 +33,7 @@ fun DistrictListScreen(
     val metaData = viewModel.getMetaData()
     val loading by viewModel.loading.observeAsState(true)
     val districts: List<DistrictUiModel> by viewModel.items.observeAsState(emptyList())
+    var text by rememberSaveable { mutableStateOf("") }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -58,7 +62,10 @@ fun DistrictListScreen(
                     }
                 } else {
                     Column {
-                        SearchBox(metaData.searchPlaceholder) { viewModel.getDistricts(it) }
+                        SearchBox(metaData.searchPlaceholder, text) {
+                            text = it
+                            viewModel.getDistricts(it)
+                        }
                         DistrictList(districts = districts)
                     }
                 }
