@@ -5,6 +5,3 @@ Android and iOS applications having shared code for API, storage, and logic usin
 - Shared Kotlin Code ✅ 
 - Android Application ✅ 
 - iOS Application ✅ 
-
-### InProgress
-- Error Handling (Android: Done; iOS: Pending)
