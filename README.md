@@ -1,5 +1,5 @@
 # CovidStatsIn
-Android and iOS application having shared code for API, data, and, business logic using Kotlin Multiplatform Mobile. API is provided by [COVID19-India API](https://api.covid19india.org/).
+Android and iOS application having shared code for API, data, and, business logic using Kotlin Multiplatform Mobile. API used for data is provided by [COVID19-India API](https://api.covid19india.org/).
 
 ---
 
@@ -34,8 +34,8 @@ CovidStatsIn has platform specific ViewModel and UI, everything remains is share
 
 #### Whats Next
 - Sharing ViewModel. One way to share ViewModel is using [D-KMP](https://github.com/dbaroncelli/D-KMP-sample)
-- Shared Error Handling Mechanism
-- Adding Unit Test Cases
+- Shared Error Handling Mechanism.
+- Unit Test Cases for shared module.
 
 ---
 
