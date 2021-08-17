@@ -10,7 +10,7 @@ import SwiftUI
 struct StateListScreen: View {
     
     @State var query: String = ""
-    @State var display: Bool = true
+    @State var display: Bool = false
     @State var errorMessage = ""
     
     @ObservedObject var viewModel = StateViewModel()
@@ -45,7 +45,7 @@ struct StateListScreen: View {
             }
             .onReceive(viewModel.errorPublisher, perform: { (error) in
                 errorMessage = error
-                display = true
+                display = !error.isEmpty
             })
             .navigationBarTitleDisplayMode(.inline)
             .onAppear(perform: {
