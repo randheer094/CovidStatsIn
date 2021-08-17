@@ -6,12 +6,11 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import kotlinx.serialization.json.Json
 import me.randheer.covidstatsin.data.model.CovidApiData
-import kotlin.native.concurrent.ThreadLocal
 
 class CovidRemoteDataSource {
 
     companion object {
-        private const val GET_COVID_PATH = "https://api.covid19india.org/v4/min/data.min.json"
+        private const val GET_COVID_PATH = "https://data.covid19india.org/v4/min/data.min.json"
     }
 
     private val client = HttpClient() {

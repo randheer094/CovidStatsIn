@@ -40,7 +40,6 @@ kotlin {
             dependencies {
                 api("io.ktor:ktor-client-core:$ktorVersion")
                 api("io.ktor:ktor-client-serialization:$ktorVersion")
-                api("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1-native-mt") {
                     version {
                         strictly("1.5.1-native-mt")
