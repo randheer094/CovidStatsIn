@@ -17,7 +17,9 @@ class GetDistrictListUseCase(
         val result = withContext(Dispatchers.Default) {
             repository.getDistrict(input.stateCode, input.query).map { mapper.map(it) }
         }
-        return withContext(Dispatchers.Main) { result }
+        return withContext(Dispatchers.Main) {
+            result
+        }
     }
 
     class Param(val stateCode: String, val query: String)
