@@ -1,5 +1,6 @@
 package me.randheer.covidstatsin.di
 
+import kotlinx.coroutines.MainScope
 import me.randheer.covidstatsin.data.local.DistrictLocalDataSource
 import me.randheer.covidstatsin.data.local.StateLocalDataSource
 import me.randheer.covidstatsin.data.mapper.ApiEntityMapper
@@ -34,6 +35,7 @@ object Providers {
     )
     internal val districtUiMapper = DistrictUiModelMapper()
 }
+val mainScope = MainScope()
 
 val stateUseCase = GetStateListUseCase(Providers.stateRepository, Providers.stateUiModelMapper)
 val stateMetaDataUseCase = StateListMetaDataUseCase()

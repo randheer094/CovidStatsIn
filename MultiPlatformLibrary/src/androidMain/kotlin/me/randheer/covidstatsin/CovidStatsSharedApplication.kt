@@ -12,6 +12,6 @@ class CovidStatsSharedApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        CovidStatsSharedApplication.appCtx = applicationContext
+        appCtx = applicationContext
     }
 }

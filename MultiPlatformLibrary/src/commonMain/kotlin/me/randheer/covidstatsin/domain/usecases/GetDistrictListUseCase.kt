@@ -6,7 +6,6 @@ import me.randheer.covidstatsin.domain.abstraction.CoroutineUseCase
 import me.randheer.covidstatsin.domain.model.DistrictUiModel
 import me.randheer.covidstatsin.domain.model.DistrictUiModelMapper
 import me.randheer.covidstatsin.domain.repo.DistrictRepository
-import me.randheer.covidstatsin.platform.ApplicationDispatcher
 
 class GetDistrictListUseCase(
     private val repository: DistrictRepository,
@@ -18,7 +17,7 @@ class GetDistrictListUseCase(
         val result = withContext(Dispatchers.Default) {
             repository.getDistrict(input.stateCode, input.query).map { mapper.map(it) }
         }
-        return withContext(ApplicationDispatcher) { result }
+        return withContext(Dispatchers.Main) { result }
     }
 
     class Param(val stateCode: String, val query: String)
