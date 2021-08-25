@@ -35,7 +35,6 @@ object Providers {
     )
     internal val districtUiMapper = DistrictUiModelMapper()
 }
-val mainScope = MainScope()
 
 val stateUseCase = GetStateListUseCase(Providers.stateRepository, Providers.stateUiModelMapper)
 val stateMetaDataUseCase = StateListMetaDataUseCase()
